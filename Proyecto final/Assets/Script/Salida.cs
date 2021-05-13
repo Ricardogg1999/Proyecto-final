@@ -10,7 +10,7 @@ public class Salida : MonoBehaviour
     public float Tiempo = 0f;
     public float repetir = 10f;
     public AudioSource grito;
-    public bool cementerio;
+   
 
     private void Update()
     {
