@@ -6,7 +6,7 @@ using UnityEngine;
 public class Salida : MonoBehaviour
 {
     public GameObject[] Zombie;
-    private int currentIndex = 0;
+    private int Lugar = 0;
     public float Tiempo = 0f;
     public float repetir = 10f;
     public AudioSource grito;
@@ -14,16 +14,16 @@ public class Salida : MonoBehaviour
 
     private void Update()
     {
-        Tiempo += Time.deltaTime;
-        if (Tiempo >= repetir)
+        Tiempo += Time.deltaTime; //tiempo suma 
+        if (Tiempo >= repetir) // si el tiempo es mayor o igal al que ponemos 
         {
 
-            int newnewIndex = Random.Range(0, Zombie.Length);
-            grito.Play();
-            Zombie[currentIndex].SetActive(false);
-            currentIndex = newnewIndex;
-            Zombie[currentIndex].SetActive(true);
-            Tiempo -= repetir;
+            int newLugar = Random.Range(0, Zombie.Length); // un lugar ramdom de los objetos
+            grito.Play(); //se activa el sonido
+            Zombie[Lugar].SetActive(false); // se desactiva el zombi
+            Lugar = newLugar; // busca un nuevo objeto 
+            Zombie[Lugar].SetActive(true); // activa un objeto de la array
+            Tiempo -= repetir;  // se resetea el tiempo
         }
 
         
