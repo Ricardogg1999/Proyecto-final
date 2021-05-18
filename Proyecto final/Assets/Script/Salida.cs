@@ -6,7 +6,9 @@ using UnityEngine;
 public class Salida : MonoBehaviour
 {
     public GameObject[] Zombie;
+    public GameObject[] Zombie2;
     private int Lugar = 0;
+    private int Lugar2 = 0;
     public float Tiempo = 0f;
     public float repetir = 10f;
     public AudioSource grito;
@@ -22,8 +24,23 @@ public class Salida : MonoBehaviour
             grito.Play(); //se activa el sonido
             Zombie[Lugar].SetActive(false); // se desactiva el zombi
             Lugar = newLugar; // busca un nuevo objeto 
-            Zombie[Lugar].SetActive(true); // activa un objeto de la array
-            Tiempo -= repetir;  // se resetea el tiempo
+            int newLugar2 = Random.Range(0, Zombie2.Length); // un lugar ramdom de los objetos
+            grito.Play(); //se activa el sonido
+            Zombie2[Lugar2].SetActive(false); // se desactiva el zombi
+            Lugar2 = newLugar2;
+
+            if (Zombie[Lugar].activeSelf)
+            {
+                 newLugar = Random.Range(0, Zombie.Length);
+                 newLugar2 = Random.Range(0, Zombie2.Length);
+            }
+            else
+            {
+                Zombie[Lugar].SetActive(true);
+                Zombie2[Lugar2].SetActive(true);// activa un objeto de la array
+                Tiempo -= repetir;
+            }
+             
         }
 
         

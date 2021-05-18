@@ -10,6 +10,9 @@ public class Tiempo : MonoBehaviour
     public TextMeshProUGUI Contador;
     public bool isruning = false;
     public TextMeshProUGUI Decimas;
+    public TextMeshProUGUI Puntos;
+    public GameObject Derrota;
+    public GameObject cambio;
     
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,12 @@ public class Tiempo : MonoBehaviour
         float decimas = (timedown - (int)timedown) * 100;
         Decimas.text = decimas.ToString("00");
         Contador.text =segundos.ToString("00");
+
+        if (timedown<=0f)
+        {
+            Derrota.SetActive(true);
+            cambio.SetActive(false);
+        }
 
 
     }
