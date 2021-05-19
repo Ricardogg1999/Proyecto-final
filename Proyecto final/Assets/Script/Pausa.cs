@@ -7,16 +7,7 @@ public class Pausa : MonoBehaviour
 {
    
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-      
-
-    }
+   
 
     public void Reinicio()
     {

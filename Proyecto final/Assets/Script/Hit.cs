@@ -9,7 +9,6 @@ public class Hit : MonoBehaviour
     public TextMeshProUGUI Puntuacion;
     
 
-    // Update is called once per frame
     void Update()
     {
       if (Input.GetMouseButtonDown(0))
@@ -22,11 +21,10 @@ public class Hit : MonoBehaviour
                 if (hitInfo.collider.tag.Equals("Zombie"))
                 {
                     Debug.Log("has pisado en " + hitInfo.collider.gameObject.name);
-
-                    
-                        puntos++;
-                    
+                    hitInfo.collider.gameObject.SetActive(false);
+                    puntos++;
                     Puntuacion.text = puntos.ToString();
+                    
                 }
             }
         }  

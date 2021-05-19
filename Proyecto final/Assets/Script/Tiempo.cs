@@ -13,7 +13,8 @@ public class Tiempo : MonoBehaviour
     public TextMeshProUGUI Puntos;
     public GameObject Derrota;
     public GameObject cambio;
-    
+    public AudioSource fin;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +42,7 @@ public class Tiempo : MonoBehaviour
         if (timedown<=0f)
         {
             Derrota.SetActive(true);
+            fin.Play();
             cambio.SetActive(false);
         }
 
