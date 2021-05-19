@@ -8993,6 +8993,7 @@ MonoBehaviour:
   - {fileID: 427604160}
   - {fileID: 1645273050}
   - {fileID: 1665065207}
+  muerte: {fileID: 648622624465075273}
 --- !u!4 &1836903053
 Transform:
   m_ObjectHideFlags: 0
@@ -10449,6 +10450,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &648622624465075273
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648622624465075270}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 2660591974509941691, guid: 57c3c55cfd09ae34ebd6e8fa19a97674,
+    type: 3}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!4 &2104112457901269294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6625917847456329194, guid: fe058b2235aa4fa46a657d4c9a7fcb98,

@@ -17,6 +17,7 @@ public class Salida : MonoBehaviour
     public TextMeshProUGUI Puntuacion;
     public Animator[] ZombieAnimacion;
     
+    
 
     public void Start()
     {
@@ -49,8 +50,8 @@ public class Salida : MonoBehaviour
             Zombie[Lugar].SetActive(false); // se desactiva el zombi
             Lugar = newLugar; // busca un nuevo objeto 
             int newLugar2 = Random.Range(0, Zombie2.Length); // un lugar ramdom de los objetos
-            grito.Play(); //se activa el sonido
-            Zombie2[Lugar2].SetActive(false); // se desactiva el zombi
+            grito.Play();//se activa el sonido
+            //Zombie2[Lugar2].SetActive(false); // se desactiva el zombi
             Lugar2 = newLugar2;
             
 
@@ -83,7 +84,7 @@ public class Salida : MonoBehaviour
                     Debug.Log("has pisado en " + hitInfo.collider.gameObject.name);
                     hitInfo.collider.gameObject.SetActive(false);
                     puntos++;
-                    
+                    ZombieAnimacion[].SetTrigger("Muerte");
                     Puntuacion.text = puntos.ToString();
 
                 }
