@@ -18,6 +18,8 @@ public class Salida : MonoBehaviour
     public Animator[] ZombieAnimacion;
     public int puntos2;
     public TextMeshProUGUI PuntuacionDerrota;
+    public GameObject Rifle;
+    public GameObject escopeta;
     
     
     
@@ -95,6 +97,7 @@ public class Salida : MonoBehaviour
                     grito.Stop();
                     Puntuacion.text = puntos.ToString();
                     PuntuacionDerrota.text = puntos2.ToString();
+                    Rifle.transform.LookAt(hitInfo.collider.transform.position);
 
                 }
             }
@@ -102,5 +105,17 @@ public class Salida : MonoBehaviour
 
 
     }
-   
+
+    public void Reset()
+    {
+        for (int i = 0; i < Zombie.Length; i++)
+        {
+            Zombie[i].SetActive(false);
+        }
+        for (int i = 0; i < Zombie2.Length; i++)
+        {
+            Zombie2[i].SetActive(false);
+        }
+    }
+
 }
