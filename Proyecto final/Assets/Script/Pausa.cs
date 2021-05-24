@@ -7,11 +7,13 @@ public class Pausa : MonoBehaviour
 {
    
 
-   
-
     public void Reinicio()
     {
         SceneManager.LoadScene(0);
+        
     }
+
+    
+    
 } 
 

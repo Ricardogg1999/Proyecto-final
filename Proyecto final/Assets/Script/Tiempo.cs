@@ -29,6 +29,8 @@ public class Tiempo : MonoBehaviour
             {
                 timedown -= Time.deltaTime;
                 remaingTime = timedown;
+                
+                
             }
 
 

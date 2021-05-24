@@ -16,6 +16,10 @@ public class Salida : MonoBehaviour
     public int puntos;
     public TextMeshProUGUI Puntuacion;
     public Animator[] ZombieAnimacion;
+    public int puntos2;
+    public TextMeshProUGUI PuntuacionDerrota;
+    
+    
     
     
 
@@ -46,32 +50,35 @@ public class Salida : MonoBehaviour
         {
 
             int newLugar = Random.Range(0, Zombie.Length); // un lugar ramdom de los objetos
-            grito.Play(); //se activa el sonido
+             //se activa el sonido
             Zombie[Lugar].SetActive(false); // se desactiva el zombi
             Lugar = newLugar; // busca un nuevo objeto 
             int newLugar2 = Random.Range(0, Zombie2.Length); // un lugar ramdom de los objetos
-            grito.Play();//se activa el sonido
-            //Zombie2[Lugar2].SetActive(false); // se desactiva el zombi
+            
+            Zombie2[Lugar2].SetActive(false); // se desactiva el zombi
             Lugar2 = newLugar2;
             
+
 
             if (Zombie[Lugar].activeSelf)
             {
                  newLugar = Random.Range(0, Zombie.Length);
                  newLugar2 = Random.Range(0, Zombie2.Length);
-                
+                 
+
             }
             else
             {
                 Zombie[Lugar].SetActive(true);
-                Zombie2[Lugar2].SetActive(true); // activa un objeto de la array
+                Zombie2[Lugar2].SetActive(true);
                 Tiempo -= repetir;
-                
+                grito.Play();
+
             }
              
         }
 
-        //sistema de deteccion
+        //sistema de deteccion y puntuacion
         if (Input.GetMouseButtonDown(0))
         {
             Ray rayo = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -84,8 +91,10 @@ public class Salida : MonoBehaviour
                     Debug.Log("has pisado en " + hitInfo.collider.gameObject.name);
                     hitInfo.collider.gameObject.SetActive(false);
                     puntos++;
-                    ZombieAnimacion[].SetTrigger("Muerte");
+                    puntos2++;
+                    grito.Stop();
                     Puntuacion.text = puntos.ToString();
+                    PuntuacionDerrota.text = puntos2.ToString();
 
                 }
             }
