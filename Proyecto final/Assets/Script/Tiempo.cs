@@ -14,11 +14,21 @@ public class Tiempo : MonoBehaviour
     public GameObject Derrota;
     public GameObject cambio;
     public AudioSource fin;
+    public TextMeshProUGUI Record;
+    public static Tiempo intance;
+   
 
     // Start is called before the first frame update
     void Start()
     {
         Reinicio();
+    }
+    public void Awake()
+    {
+        if (intance == null)
+        {
+            intance = this;
+        }
     }
     void Update()
     {
@@ -46,6 +56,9 @@ public class Tiempo : MonoBehaviour
             Derrota.SetActive(true);
             fin.Play();
             cambio.SetActive(false);
+            Salida.intance.Record();
+            Record.text = PlayerPrefs.GetInt("Record").ToString();
+            
         }
 
 

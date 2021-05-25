@@ -8,22 +8,23 @@ public class Salida : MonoBehaviour
 {
     public GameObject[] Zombie;
     public GameObject[] Zombie2;
+    public GameObject[] PowerUpTiempo;
+    public float GolpeRapido = 0.7f;
     private int Lugar = 0;
     private int Lugar2 = 0;
-    public float Tiempo = 0f;
+    private int Lugar3 = 0; 
+    public float Cuenta = 0f;
+    public float TiempoPower = 0f;
+    public float reinicioPower = 1f;
     public float repetir = 10f;
+    public float RepetirPower = 20f;
     public AudioSource grito;
     public int puntos;
     public TextMeshProUGUI Puntuacion;
     public Animator[] ZombieAnimacion;
-    public int puntos2;
     public TextMeshProUGUI PuntuacionDerrota;
-    public GameObject Rifle;
-    public GameObject escopeta;
-    
-    
-    
-    
+    public static Salida intance;
+
 
     public void Start()
     {
@@ -35,9 +36,17 @@ public class Salida : MonoBehaviour
         {
             Zombie2[i].SetActive(false);
         }
+        for (int i=0;i< PowerUpTiempo.Length; i++)
+        {
+            PowerUpTiempo[i].SetActive(false);
+        }
     }
     private void Awake()
     {
+        if (intance == null)
+        {
+            intance = this;
+        }
         for (int i = 0; i < ZombieAnimacion.Length; i++)
         {
             ZombieAnimacion[i].GetComponent<Animator>();
@@ -45,10 +54,12 @@ public class Salida : MonoBehaviour
     }
     private void Update()
     {
-        Tiempo += Time.deltaTime; //tiempo suma 
+        Cuenta += Time.deltaTime;
+        GolpeRapido -= Time.deltaTime;
+        TiempoPower += Time.deltaTime; 
 
-        
-        if (Tiempo >= repetir) // si el tiempo es mayor o igual al que ponemos 
+        //Temporizador zombies
+        if (Cuenta >= repetir) // si el tiempo es mayor o igual al que ponemos 
         {
 
             int newLugar = Random.Range(0, Zombie.Length); // un lugar ramdom de los objetos
@@ -73,13 +84,35 @@ public class Salida : MonoBehaviour
             {
                 Zombie[Lugar].SetActive(true);
                 Zombie2[Lugar2].SetActive(true);
-                Tiempo -= repetir;
+                GolpeRapido = 0.7f;
+                Cuenta -= repetir;
                 grito.Play();
 
             }
              
         }
+        //PoweUpTiempo
+        if (TiempoPower >= RepetirPower)
+        {
+            int newLugar3 = Random.Range(0, PowerUpTiempo.Length);
+            PowerUpTiempo[Lugar3].SetActive(false);
+            Lugar3 = newLugar3;
+            if (PowerUpTiempo[Lugar3].activeSelf)
+            {
+                newLugar3 = Random.Range(0, PowerUpTiempo.Length);
 
+            }
+            else 
+            {
+
+                PowerUpTiempo[Lugar3].SetActive(true);
+                TiempoPower -= RepetirPower;
+               
+                
+            }
+            
+
+        }
         //sistema de deteccion y puntuacion
         if (Input.GetMouseButtonDown(0))
         {
@@ -92,18 +125,39 @@ public class Salida : MonoBehaviour
                 {
                     Debug.Log("has pisado en " + hitInfo.collider.gameObject.name);
                     hitInfo.collider.gameObject.SetActive(false);
-                    puntos++;
-                    puntos2++;
+                    
+                    if (GolpeRapido > 0f)
+                    {
+                        puntos = puntos + 2;
+                    }
+                    else
+                    {
+                        puntos++;
+                    }
                     grito.Stop();
                     Puntuacion.text = puntos.ToString();
-                    PuntuacionDerrota.text = puntos2.ToString();
-                    Rifle.transform.LookAt(hitInfo.collider.transform.position);
+                    PuntuacionDerrota.text = puntos.ToString();
 
+                    
+
+                }
+                //PowerUpTiempo+10
+                if (hitInfo.collider.tag.Equals("PowerUpTiempo"))
+                {
+                    hitInfo.collider.gameObject.SetActive(false);
+                    Tiempo.intance.timedown = Tiempo.intance.timedown +10;
                 }
             }
         }
 
 
+    }
+    public void Record()
+    {
+        if (puntos > PlayerPrefs.GetInt("Record"))
+        {
+            PlayerPrefs.SetInt("Record", puntos);
+        }
     }
 
     public void Reset()
