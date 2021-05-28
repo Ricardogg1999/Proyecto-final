@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Zombie
   - PowerUpTiempo
+  - PowerUpMenosTiempo
+  - MasPuntos
+  - MenosPuntos
   layers:
   - Default
   - TransparentFX
