@@ -28,11 +28,27 @@ public class Monedero : MonoBehaviour
     {
         if (GolpeRapido > 0f)
         {
-            puntos = puntos + 2;
+            if (Salida.intance.Pordosactivado == true)
+            {
+                puntos = puntos + 2 * 2;
+            }
+            else
+            {
+                puntos = puntos + 2;
+            }
+            
         }
         else
         {
-            puntos++;
+            if(Salida.intance.Pordosactivado == true)
+            {
+                puntos = puntos + 1 * 2;
+
+            }
+            else
+            {
+                puntos++;
+            }
         }
         Puntuacion.text = puntos.ToString();
         PuntuacionDerrota.text = puntos.ToString();

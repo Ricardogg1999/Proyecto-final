@@ -40,8 +40,9 @@ public class Salida : MonoBehaviour
     public float RepetirPorDos = 30f;
     
     public AudioSource grito;
-    
-    
+
+    public bool Pordosactivado;
+    public float DuracionPorDos;
     public Animator[] ZombieAnimacion;
     
     public static Salida intance;
@@ -52,6 +53,7 @@ public class Salida : MonoBehaviour
     public Animator[] AnimacionPorDos;
 
 
+    
     public void Start()
     {
         for(int i =0; i < Zombie.Length; i++)
@@ -287,8 +289,14 @@ public class Salida : MonoBehaviour
 
 
         }
+        DuracionPorDos -= Time.deltaTime;
+
+        if (DuracionPorDos <= 0)
+        {
+            Pordosactivado = false;
+        }
         //sistema de deteccion y puntuacion
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)||Input.touchCount>=1&&Input.GetTouch(0).phase==TouchPhase.Began)
         {
             Ray rayo = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
@@ -335,10 +343,15 @@ public class Salida : MonoBehaviour
                 }
                 if (hitInfo.collider.tag.Equals("PorDos"))
                 {
+
+                    Pordosactivado = true;
+                    DuracionPorDos = 5f;
                     
                     hitInfo.collider.gameObject.SetActive(false);
+
                     
                 }
+                
             }
         }
 

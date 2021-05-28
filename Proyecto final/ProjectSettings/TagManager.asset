@@ -9,6 +9,7 @@ TagManager:
   - PowerUpMenosTiempo
   - MasPuntos
   - MenosPuntos
+  - PorDos
   layers:
   - Default
   - TransparentFX
