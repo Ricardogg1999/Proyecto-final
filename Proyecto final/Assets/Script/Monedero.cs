@@ -15,7 +15,12 @@ public class Monedero : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (puntos <= 0)
+        {
+            puntos = 0;
+        }
+        Puntuacion.text = puntos.ToString();
+        PuntuacionDerrota.text = puntos.ToString();
     }
     public void Awake()
     {
@@ -50,7 +55,6 @@ public class Monedero : MonoBehaviour
                 puntos++;
             }
         }
-        Puntuacion.text = puntos.ToString();
-        PuntuacionDerrota.text = puntos.ToString();
+        
     }
 }

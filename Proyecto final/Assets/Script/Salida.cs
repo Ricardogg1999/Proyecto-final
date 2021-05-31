@@ -337,7 +337,12 @@ public class Salida : MonoBehaviour
                 //PowerUpMenosPuntos
                 if (hitInfo.collider.tag.Equals("MenosPuntos"))
                 {
+                    
                     Monedero.intance.puntos = Monedero.intance.puntos - 5;
+                    if (Monedero.intance.puntos <= 0)
+                    {
+                        Monedero.intance.puntos = 0;
+                    }
                     hitInfo.collider.gameObject.SetActive(false);
 
                 }
