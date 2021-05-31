@@ -356,6 +356,7 @@ public class Salida : MonoBehaviour
         }
 
     }
+    //Funcio de Records
     public void Record()
     {
         if (Monedero.intance.puntos > PlayerPrefs.GetInt("Record"))
