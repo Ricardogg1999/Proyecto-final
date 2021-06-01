@@ -18,7 +18,6 @@ public class Tiempo : MonoBehaviour
     public static Tiempo intance;
    
 
-    // Start is called before the first frame update
     void Start()
     {
         Reinicio();
