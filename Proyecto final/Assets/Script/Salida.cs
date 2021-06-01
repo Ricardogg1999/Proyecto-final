@@ -40,6 +40,12 @@ public class Salida : MonoBehaviour
     public float RepetirPorDos = 30f;
     
     public AudioSource grito;
+    public AudioSource Bomba;
+    public AudioSource Monedas;
+    public AudioSource MasTiempo;
+    public AudioSource MenosTiempo;
+    public AudioSource Disparo;
+    public AudioSource DoblePuntuacion;
 
     public bool Pordosactivado;
     public float DuracionPorDos;
@@ -148,6 +154,7 @@ public class Salida : MonoBehaviour
             {
                  newLugar = Random.Range(0, Zombie.Length);
                  newLugar2 = Random.Range(0, Zombie2.Length);
+                
                  
 
             }
@@ -159,7 +166,7 @@ public class Salida : MonoBehaviour
                 Monedero.intance.GolpeRapido = 0.7f;
                 
                 Cuenta -= repetir;
-                grito.Play();
+                Musica.intance.grito.Play();
 
             }
              
@@ -260,11 +267,13 @@ public class Salida : MonoBehaviour
 
                 MenosPuntos[Lugar6].SetActive(true);
                 TiempoMenosPuntos -= RepetirMenosPuntos;
+                
 
             }
 
 
         }
+        //PowerUpPordos
         if (TiempoPorDos >= RepetirPorDos)
         {
             int newLugar7 = Random.Range(0, PorDos.Length);
@@ -295,6 +304,7 @@ public class Salida : MonoBehaviour
         {
             Pordosactivado = false;
         }
+
         //sistema de deteccion y puntuacion
         if (Input.GetMouseButtonDown(0)||Input.touchCount>=1&&Input.GetTouch(0).phase==TouchPhase.Began)
         {
@@ -310,9 +320,10 @@ public class Salida : MonoBehaviour
 
 
                     Monedero.intance.Puntos();
-                     
-                    grito.Stop();
-                    
+
+                    Musica.intance.grito.Stop();
+                    Musica.intance.Disparo.Play();
+
 
                 }
                 //PowerUpTiempo+10
@@ -320,19 +331,22 @@ public class Salida : MonoBehaviour
                 {
                     hitInfo.collider.gameObject.SetActive(false);
                     Tiempo.intance.timedown = Tiempo.intance.timedown +10;
+                    Musica.intance.MasTiempo.Play();
                 }
                 //PowerUpTiempo-10
                 if (hitInfo.collider.tag.Equals("PowerUpMenosTiempo"))
                 {
                     hitInfo.collider.gameObject.SetActive(false);
                     Tiempo.intance.timedown = Tiempo.intance.timedown - 10;
+                    Musica.intance.MenosTiempo.Play();
                 }
                 //PowerUpMasPuntos
                 if (hitInfo.collider.tag.Equals("MasPuntos"))
                 {
-                    Monedero.intance.puntos = Monedero.intance.puntos + 5;
+                    Monedero.intance.puntos = Monedero.intance.puntos + 10;
                     hitInfo.collider.gameObject.SetActive(false);
-                    
+                    Musica.intance.Monedas.Play();
+
                 }
                 //PowerUpMenosPuntos
                 if (hitInfo.collider.tag.Equals("MenosPuntos"))
@@ -344,6 +358,7 @@ public class Salida : MonoBehaviour
                         Monedero.intance.puntos = 0;
                     }
                     hitInfo.collider.gameObject.SetActive(false);
+                    Musica.intance.Bomba.Play();
 
                 }
                 if (hitInfo.collider.tag.Equals("PorDos"))
@@ -351,7 +366,8 @@ public class Salida : MonoBehaviour
 
                     Pordosactivado = true;
                     DuracionPorDos = 5f;
-                    
+                    Musica.intance.DoblePuntuacion.Play();
+
                     hitInfo.collider.gameObject.SetActive(false);
 
                     

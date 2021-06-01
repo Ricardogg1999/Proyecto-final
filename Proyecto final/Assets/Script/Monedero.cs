@@ -12,7 +12,7 @@ public class Monedero : MonoBehaviour
     public TextMeshProUGUI Puntuacion;
 
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (puntos <= 0)
